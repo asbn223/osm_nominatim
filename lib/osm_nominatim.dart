@@ -298,6 +298,32 @@ class Place {
             : null,
       );
 
+  /// Convert a Place object to JSON
+  Map<String, dynamic> toJson() => {
+    'place_id': placeId,
+    'osm_type': osmType,
+    'osm_id': osmId,
+    'boundingbox': boundingBox,
+    'lat': lat.toString(),
+    'lon': lon.toString(),
+    'display_name': displayName,
+    'place_rank': placeRank,
+    'category': category,
+    'type': type,
+    'importance': importance,
+    'icon': icon,
+    'address': address,
+    'extratags': extraTags,
+    'namedetails': nameDetails,
+  };
+
+  /// Create a Place object from a raw JSON string
+  factory Place.fromRawJson(String str) => Place.fromJson(json.decode(str));
+
+  /// Convert a Place object to a raw JSON string
+  String toRawJson() => json.encode(toJson());
+
+
   /// Reference to the Nominatim internal database ID
   /// See https://nominatim.org/release-docs/latest/api/Output/#place_id-is-not-a-persistent-id
   final int placeId;
